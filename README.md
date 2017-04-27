@@ -1,6 +1,6 @@
 # npmdoc-sassdoc
 
-#### api documentation for  [sassdoc (v2.2.2)](http://sassdoc.com)  [![npm package](https://img.shields.io/npm/v/npmdoc-sassdoc.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-sassdoc) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-sassdoc.svg)](https://travis-ci.org/npmdoc/node-npmdoc-sassdoc)
+#### basic api documentation for  [sassdoc (v2.2.2)](http://sassdoc.com)  [![npm package](https://img.shields.io/npm/v/npmdoc-sassdoc.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-sassdoc) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-sassdoc.svg)](https://travis-ci.org/npmdoc/node-npmdoc-sassdoc)
 
 #### Release the docs!
 

@@ -108,6 +108,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index">
+            function <span class="apidocSignatureSpan">sassdoc.</span>index
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.sassdoc.parse">
             function <span class="apidocSignatureSpan">sassdoc.</span>parse
             <span class="apidocSignatureSpan">()</span>
@@ -158,6 +167,88 @@
             function <span class="apidocSignatureSpan">sassdoc.errors.</span>Warning
             <span class="apidocSignatureSpan">(message)</span>
             </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.sassdoc.index">module sassdoc.index</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.index">
+            function <span class="apidocSignatureSpan">sassdoc.</span>index
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.Environment">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>Environment
+            <span class="apidocSignatureSpan">(logger)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.Logger">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>Logger
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.Parser">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>Parser
+            <span class="apidocSignatureSpan">(env, additionalAnnotations)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.ensureEnvironment">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>ensureEnvironment
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.parse">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>parse
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.parseFilter">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>parseFilter
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sassdoc.index.sorter">
+            function <span class="apidocSignatureSpan">sassdoc.index.</span>sorter
+            <span class="apidocSignatureSpan">(data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">sassdoc.index.</span>errors</span>
 
         </li>
 
@@ -451,6 +542,160 @@
 
 
     <h2>
+        <a href="#apidoc.element.sassdoc.index" id="apidoc.element.sassdoc.index">
+        function <span class="apidocSignatureSpan">sassdoc.</span>index
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function sassdoc() {
+
+<span class="apidocCodeCommentSpan">  /**
+   * Execute full SassDoc sequence from a source directory.
+   * @return {Promise}
+   */
+</span>  var documentize = function () {
+    var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(env) {
+      var data;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              init(env);
+              _context.next = 3;
+              return baseDocumentize(env);
+
+            case 3:
+              data = _context.sent;
+              _context.prev = 4;
+              _context.next = 7;
+              return refresh(env);
+
+            case 7:
+              _context.next = 9;
+              return theme(env);
+
+            case 9:
+              okay(env);
+              _context.next = 16;
+              break;
+
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context[&#x27;catch&#x27;](4);
+
+              env.emit(&#x27;error&#x27;, _context.t0);
+              throw _context.t0;
+
+            case 16:
+              return _context.abrupt(&#x27;return&#x27;, data);
+
+            case 17:
+            case &#x27;end&#x27;:
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[4, 12]]);
+    }));
+
+    return function documentize(_x3) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  /**
+   * Execute full SassDoc sequence from a Vinyl files stream.
+   * @return {Stream}
+   * @return {Promise} - as a property of Stream.
+   */
+
+
+  return srcEnv(documentize, stream).apply(undefined, arguments);
+
+  /**
+   * Safely wipe and re-create the destination directory.
+   * @return {Promise}
+   */
+  function refresh(env) {
+    return (0, _safeWipe2.default)(env.dest, {
+      force: true,
+      parent: _utils.is.string(env.src) || _utils.is.array(env.src) ? (0, _utils.g2b)(env.src) : null,
+      silent: true
+    }).then(function () {
+      return mkdir(env.dest);
+    }).then(function () {
+      env.logger.log(&#x27;Folder `&#x27; + env.displayDest + &#x27;` successfully refreshed.&#x27;);
+    }).catch(function (err) {
+      // Friendly error for already existing directory.
+      throw new errors.SassDocError(err.message);
+    });
+  }
+
+  /**
+   * Render theme with parsed data context.
+   * @return {Promise}
+   */
+  function theme(env) {
+    var promise = env.theme(env.dest, env);
+
+    if (!_utils.is.promise(promise)) {
+      var type = Object.prototype.toString.call(promise);
+      throw new errors.Error(&#x27;Theme didn\&#x27;t return a promise, got &#x27; + type + &#x27;.&#x27;);
+    }
+
+    return promise.then(function () {
+      var displayTheme = env.displayTheme || &#x27;anonymous&#x27;;
+      env.logger.log(&#x27;Theme `&#x27; + displayTheme + &#x27;` successfully rendered.&#x27;);
+    });
+  }function stream(env) {
+    var filter = parseFilter(env);
+
+    filter.promise.then(function (data) {
+      env.logger.log(&#x27;Sass sources successfully parsed.&#x27;);
+      env.data = data;
+      onEmpty(data, env);
+    });
+
+    /**
+     * Returned Promise await the full sequence,
+     * instead of just the parsing step.
+     */
+    filter.promise = new _promise2.default(function (resolve, reject) {
+      var documentize = function () {
+        var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+          return _regenerator2.default.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.prev = 0;
+
+                  init(env);
+                  _context2.next = 4;
+                  return refresh(env);
+
+                case 4:
+                  _context2.next = 6;
+                  return theme(env);
+
+                case 6:
+                  okay(env);
+                  resolve();
+                  _context2.next = 15;
+                  break;
+
+                case 10:
+                  _context2.prev = 10;
+                  _context2.t0 = _context2[&#x27;catch&#x27;](0);
+
+                  reject(_context2.t0);
+                  env.emit(&#x27;error&#x27;, _context2.t0);
+                  throw _context2.t0; ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
         <a href="#apidoc.element.sassdoc.parse" id="apidoc.element.sassdoc.parse">
         function <span class="apidocSignatureSpan">sassdoc.</span>parse
         <span class="apidocSignatureSpan">()</span>
@@ -512,7 +757,24 @@
     return (0, _multipipe2.default)(parseStream, filter);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### API breaks for third party integration
+
+* The node API has been revamped and unified.
+* `sassdoc.documentize` does not exist anymore.
+* `sassdoc(src [, config])` execute the full Documentation process, returns a Promise.
+* `sassdoc([config])` execute the full Documentation process, returns a Stream of Vinyl files.
+* `sassdoc.<span class="apidocCodeKeywordSpan">parse</span>(src [, config])` returns a Promise with the full data object.
+* `sassdoc.parse([config])` returns a Stream with the full data object.
+
+### New features
+
+* The whole API has been fully refactored in ES6 ([#231](https://github.com/SassDoc/sassdoc/issues/231))
+* `$` sign is now optional when defining the name in `@parameter` annotation ([#222](https://github.com/SassDoc/sassdoc/issues/222
+))
+* It is now possible to use file/folder exclusion patterns ([#228](https://github.com/SassDoc/sassdoc/issues/231))
+...</pre></li>
     </ul>
 
 
@@ -579,7 +841,24 @@
   _this.message = message; // rm when native class support.
   return _this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return this.loadFile(config);
+  }
+
+  if (_utils.is.plainObject(config)) {
+    return this.loadObject(config);
+  }
+
+  this.emit(&#x27;error&#x27;, new errors.<span class="apidocCodeKeywordSpan">SassDocError</span>(&#x27;Invalid `config` argument
+, expected string, object or undefined.&#x27;));
+}
+
+/**
+ * Merge given configuration object, excluding reserved keys.
+ *
+ * @param {Object} config
+ */
+...</pre></li>
     </ul>
 
 
@@ -600,8 +879,436 @@
   _this2.message = message; // rm when native class support.
   return _this2;
 }</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  }, {
+key: &#x27;loadFile&#x27;,
+value: function loadFile(file) {
+  this.file = file;
+
+  if (!this.tryLoadCurrentFile()) {
+    this.emit(&#x27;warning&#x27;, new errors.<span class="apidocCodeKeywordSpan">Warning</span>(&#x27;Config file `&#x27; + file
+ + &#x27;` not found.&#x27;));
+    this.logger.warn(&#x27;Falling back to `.sassdocrc`&#x27;);
+    this.loadDefaultFile();
+  }
+}
+
+/**
+ * Try to load default `.sassdocrc` configuration file, or fallback
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.sassdoc.index" id="apidoc.module.sassdoc.index">module sassdoc.index</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.index" id="apidoc.element.sassdoc.index.index">
+        function <span class="apidocSignatureSpan">sassdoc.</span>index
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function sassdoc() {
+
+<span class="apidocCodeCommentSpan">  /**
+   * Execute full SassDoc sequence from a source directory.
+   * @return {Promise}
+   */
+</span>  var documentize = function () {
+    var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(env) {
+      var data;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              init(env);
+              _context.next = 3;
+              return baseDocumentize(env);
+
+            case 3:
+              data = _context.sent;
+              _context.prev = 4;
+              _context.next = 7;
+              return refresh(env);
+
+            case 7:
+              _context.next = 9;
+              return theme(env);
+
+            case 9:
+              okay(env);
+              _context.next = 16;
+              break;
+
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context[&#x27;catch&#x27;](4);
+
+              env.emit(&#x27;error&#x27;, _context.t0);
+              throw _context.t0;
+
+            case 16:
+              return _context.abrupt(&#x27;return&#x27;, data);
+
+            case 17:
+            case &#x27;end&#x27;:
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[4, 12]]);
+    }));
+
+    return function documentize(_x3) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  /**
+   * Execute full SassDoc sequence from a Vinyl files stream.
+   * @return {Stream}
+   * @return {Promise} - as a property of Stream.
+   */
+
+
+  return srcEnv(documentize, stream).apply(undefined, arguments);
+
+  /**
+   * Safely wipe and re-create the destination directory.
+   * @return {Promise}
+   */
+  function refresh(env) {
+    return (0, _safeWipe2.default)(env.dest, {
+      force: true,
+      parent: _utils.is.string(env.src) || _utils.is.array(env.src) ? (0, _utils.g2b)(env.src) : null,
+      silent: true
+    }).then(function () {
+      return mkdir(env.dest);
+    }).then(function () {
+      env.logger.log(&#x27;Folder `&#x27; + env.displayDest + &#x27;` successfully refreshed.&#x27;);
+    }).catch(function (err) {
+      // Friendly error for already existing directory.
+      throw new errors.SassDocError(err.message);
+    });
+  }
+
+  /**
+   * Render theme with parsed data context.
+   * @return {Promise}
+   */
+  function theme(env) {
+    var promise = env.theme(env.dest, env);
+
+    if (!_utils.is.promise(promise)) {
+      var type = Object.prototype.toString.call(promise);
+      throw new errors.Error(&#x27;Theme didn\&#x27;t return a promise, got &#x27; + type + &#x27;.&#x27;);
+    }
+
+    return promise.then(function () {
+      var displayTheme = env.displayTheme || &#x27;anonymous&#x27;;
+      env.logger.log(&#x27;Theme `&#x27; + displayTheme + &#x27;` successfully rendered.&#x27;);
+    });
+  }function stream(env) {
+    var filter = parseFilter(env);
+
+    filter.promise.then(function (data) {
+      env.logger.log(&#x27;Sass sources successfully parsed.&#x27;);
+      env.data = data;
+      onEmpty(data, env);
+    });
+
+    /**
+     * Returned Promise await the full sequence,
+     * instead of just the parsing step.
+     */
+    filter.promise = new _promise2.default(function (resolve, reject) {
+      var documentize = function () {
+        var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+          return _regenerator2.default.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.prev = 0;
+
+                  init(env);
+                  _context2.next = 4;
+                  return refresh(env);
+
+                case 4:
+                  _context2.next = 6;
+                  return theme(env);
+
+                case 6:
+                  okay(env);
+                  resolve();
+                  _context2.next = 15;
+                  break;
+
+                case 10:
+                  _context2.prev = 10;
+                  _context2.t0 = _context2[&#x27;catch&#x27;](0);
+
+                  reject(_context2.t0);
+                  env.emit(&#x27;error&#x27;, _context2.t0);
+                  throw _context2.t0; ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.Environment" id="apidoc.element.sassdoc.index.Environment">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>Environment
+        <span class="apidocSignatureSpan">(logger)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Environment(logger) {
+  var verbose = arguments.length &#x3e; 1 &#x26;&#x26; arguments[1] !== undefined ? arguments[1] : false;
+  var strict = arguments.length &#x3e; 2 &#x26;&#x26; arguments[2] !== undefined ? arguments[2] : false;
+  (0, _classCallCheck3.default)(this, Environment);
+
+  var _this = (0, _possibleConstructorReturn3.default)(this, (Environment.__proto__ || (0, _getPrototypeOf2.default)(Environment
+)).call(this));
+
+  _this.logger = logger;
+  _this.verbose = verbose;
+  _this.strict = strict;
+
+  _this.on(&#x27;error&#x27;, function (error) {
+    var friendlyErrors = [errors.SassDocError, _sassConvert2.default.BinaryError, _sassConvert2.default.VersionError];
+
+    if ((0, _find2.default)(friendlyErrors, function (c) {
+      return error instanceof c;
+    })) {
+      logger.error(error.message);
+    } else {
+      if (_utils.is.error(error) &#x26;&#x26; &#x27;stack&#x27; in error) {
+        logger.error(error.stack);
+      } else {
+        logger.error(error);
+      }
+    }
+  });
+
+  if (strict) {
+    _this.on(&#x27;warning&#x27;, function (warning) {
+      return _this.emit(&#x27;error&#x27;, warning);
+    });
+  } else {
+    _this.on(&#x27;warning&#x27;, function (warning) {
+      return logger.warn(warning.message);
+    });
+  }
+  return _this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.Logger" id="apidoc.element.sassdoc.index.Logger">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>Logger
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Logger() {
+  var verbose = arguments.length &#x3e; 0 &#x26;&#x26; arguments[0] !== undefined ? arguments[0] : false;
+  var debug = arguments.length &#x3e; 1 &#x26;&#x26; arguments[1] !== undefined ? arguments[1] : false;
+  (0, _classCallCheck3.default)(this, Logger);
+
+  this.verbose = verbose;
+  this._stderr = process.stderr;
+  this._debug = debug;
+  this._times = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.Parser" id="apidoc.element.sassdoc.index.Parser">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>Parser
+        <span class="apidocSignatureSpan">(env, additionalAnnotations)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Parser(env, additionalAnnotations) {
+  (0, _classCallCheck3.default)(this, Parser);
+
+  this.annotations = new _annotation2.default(env);
+  this.annotations.addAnnotations(additionalAnnotations);
+  this.scssParser = new _scssCommentParser2.default(this.annotations.list, env);
+
+  this.scssParser.commentParser.on(&#x27;warning&#x27;, function (warning) {
+    env.emit(&#x27;warning&#x27;, new errors.Warning(warning.message));
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.ensureEnvironment" id="apidoc.element.sassdoc.index.ensureEnvironment">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>ensureEnvironment
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ensureEnvironment(config) {
+  var onError = arguments.length &#x3e; 1 &#x26;&#x26; arguments[1] !== undefined ? arguments[1] : function (e) {
+    throw e;
+  };
+
+  if (config instanceof _environment2.default) {
+    config.on(&#x27;error&#x27;, onError);
+    return config;
+  }
+
+  var logger = ensureLogger(config);
+  var env = new _environment2.default(logger, config &#x26;&#x26; config.verbose, config &#x26;&#x26; config.strict);
+
+  env.on(&#x27;error&#x27;, onError);
+  env.load(config);
+  env.postProcess();
+
+  return env;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.parse" id="apidoc.element.sassdoc.index.parse">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>parse
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function parse() {
+
+<span class="apidocCodeCommentSpan">  /**
+   * @return {Promise}
+   */
+</span>  var documentize = function () {
+    var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3(env) {
+      var data;
+      return _regenerator2.default.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return baseDocumentize(env);
+
+            case 2:
+              data = _context3.sent;
+              return _context3.abrupt(&#x27;return&#x27;, data);
+
+            case 4:
+            case &#x27;end&#x27;:
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this);
+    }));
+
+    return function documentize(_x4) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  /**
+   * Don&#x27;t pass files through, but pass final data at the end.
+   * @return {Stream}
+   */
+
+
+  return srcEnv(documentize, stream).apply(undefined, arguments);function stream(env) {
+    var parseStream = parseFilter(env);
+
+    var filter = _through2.default.obj(function (file, enc, cb) {
+      return cb();
+    }, function (cb) {
+      var _this = this;
+
+      parseStream.promise.then(function (data) {
+        _this.push(data);
+        cb();
+      }, cb);
+    });
+
+    return (0, _multipipe2.default)(parseStream, filter);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### API breaks for third party integration
+
+* The node API has been revamped and unified.
+* `sassdoc.documentize` does not exist anymore.
+* `sassdoc(src [, config])` execute the full Documentation process, returns a Promise.
+* `sassdoc([config])` execute the full Documentation process, returns a Stream of Vinyl files.
+* `sassdoc.<span class="apidocCodeKeywordSpan">parse</span>(src [, config])` returns a Promise with the full data object.
+* `sassdoc.parse([config])` returns a Stream with the full data object.
+
+### New features
+
+* The whole API has been fully refactored in ES6 ([#231](https://github.com/SassDoc/sassdoc/issues/231))
+* `$` sign is now optional when defining the name in `@parameter` annotation ([#222](https://github.com/SassDoc/sassdoc/issues/222
+))
+* It is now possible to use file/folder exclusion patterns ([#228](https://github.com/SassDoc/sassdoc/issues/231))
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.parseFilter" id="apidoc.element.sassdoc.index.parseFilter">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>parseFilter
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function parseFilter() {
+  var env = arguments.length &#x3e; 0 &#x26;&#x26; arguments[0] !== undefined ? arguments[0] : {};
+
+  env = ensureEnvironment(env);
+
+  var parser = new _parser2.default(env, env.theme &#x26;&#x26; env.theme.annotations);
+
+  return parser.stream();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.sassdoc.index.sorter" id="apidoc.element.sassdoc.index.sorter">
+        function <span class="apidocSignatureSpan">sassdoc.index.</span>sorter
+        <span class="apidocSignatureSpan">(data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function sort(data) {
+  return data.sort(function (a, b) {
+    return compare(a.group[0].toLowerCase(), b.group[0].toLowerCase()) || compare(a.file.path, b.file.path) || compare(a.context
+.line.start, b.context.line.start);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
 
 
 </div>
